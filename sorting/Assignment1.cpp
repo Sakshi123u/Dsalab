@@ -33,14 +33,58 @@ void insertionsort(student s[], int n) {
     for (int i = 1; i < n; i++) {
         student val = s[i];
         int j = i - 1;
-        while (j >= 0 && s[j].getroll() > val.getroll()) {
+        while (j >= 0 && s[j].getname() > val.getname()) {
             s[j + 1] = s[j];
             j--;
         }
         s[j + 1] = val;
     }
 }
-
+void insertionsortbyname(student s[], int n) {
+    for (int i = 1; i < n; i++) {
+        student val = s[i];
+        int j = i - 1;
+        while (j >= 0 && s[j].getname() > val.getname()) {
+            s[j + 1] = s[j];
+            j--;
+        }
+        s[j + 1] = val;
+    }
+}
+void shellsort(student s[],int n){
+    int gap=n/2;
+    while(gap>=1){
+        for(int j=gap;j<n;j++){
+            for(int i=j-gap;i>=0;i=i-gap){
+                if(s[i+gap].getroll()>s[i].getroll()){
+                    break;
+                }else{
+                    student temp=s[i+gap];
+                    s[i+gap]=s[i];
+                    s[i]=temp;
+                }
+            }
+        }
+        gap=gap/2;
+    }
+}
+void shellsortbyname(student s[],int n){
+    int gap=n/2;
+    while(gap>=1){
+        for(int j=gap;j<n;j++){
+            for(int i=j-gap;i>=0;i=i-gap){
+                if(s[i+gap].getname()>s[i].getname()){
+                    break;
+                }else{
+                    student temp=s[i+gap];
+                    s[i+gap]=s[i];
+                    s[i]=temp;
+                }
+            }
+        }
+        gap=gap/2;
+    }
+}
 int main() {
     student s[5];
     char x;
@@ -55,27 +99,48 @@ int main() {
         }
 
         if (x == 'y') {
-            cout << "1. Get details\n2. Show details\n3. Sort\n";
+            cout << "1. Get details\n2. Show details\n3. insertionSort\n4. shellsort\n5.shellsortbyname\n6.insertionSortbyname\n ";
             cout << "Enter your choice: ";
             cin >> choice;
 
             switch (choice) {
                 case 1:
                     cout << "Enter Details: " << endl;
-                    for (int i = 0; i < 3; i++) {
+                    for (int i = 0; i < 5; i++) {
                         s[i].getdata();
                     }
                     break;
                 case 2:
                     cout << "Show Details: " << endl;
-                    for (int i = 0; i < 3; i++) {
+                    for (int i = 0; i < 5; i++) {
                         s[i].showdata();
                     }
                     break;
                 case 3:
-                    insertionsort(s, 3);
+                    insertionsort(s, 5);
                     cout << "Sorted details: " << endl;
-                    for (int i = 0; i < 3; i++) {
+                    for (int i = 0; i < 5; i++) {
+                        s[i].showdata();
+                    }
+                    break;
+                case 4:
+                    shellsort(s, 5);
+                    cout << "Sorted details: " << endl;
+                    for (int i = 0; i < 5; i++) {
+                        s[i].showdata();
+                    }
+                    break;
+                case 5:
+                    shellsortbyname(s, 5);
+                    cout << "Sorted details: " << endl;
+                    for (int i = 0; i < 5; i++) {
+                        s[i].showdata();
+                    }
+                    break;
+                case 6:
+                    insertionsort(s, 5);
+                    cout << "Sorted details: " << endl;
+                    for (int i = 0; i < 5; i++) {
                         s[i].showdata();
                     }
                     break;
