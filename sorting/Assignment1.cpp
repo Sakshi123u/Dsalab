@@ -87,7 +87,6 @@ void shellSortbyname(Student s[], int n) {
         gap /= 2;
     }
 }
-
 int main() {
     Student s[5];
     int choice;
